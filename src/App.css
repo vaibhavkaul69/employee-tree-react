@@ -1,93 +1,89 @@
-.App {
-	text-align: center;
-}
-
-.App-logo {
-	height: 40vmin;
-	pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-	.App-logo {
-		animation: App-logo-spin infinite 20s linear;
-	}
-}
-
-.App-header {
-	background-color: #282c34;
+.container {
+	width: 100%;
 	min-height: 100vh;
 	display: flex;
+	flex-wrap: nowrap;
+}
+.org-tree {
+	width: 70%;
+}
+.employee-list-container {
+	width: 30%;
+	height: 100%;
+}
+.employee-list {
+	height: 100%;
+	padding-inline-start: 10px;
+	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	font-size: calc(10px + 2vmin);
-	color: white;
+	justify-content: space-between;
 }
-
-.App-link {
-	color: #61dafb;
+.employee-list-item {
+	margin: 8px;
+	box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 0.2);
+	padding: 6px 12px;
+	display: flex;
+	justify-content: flex-start;
 }
-
-@keyframes App-logo-spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
+.search-filter-employee {
+	display: flex;
+	padding: 20px;
 }
-
-* {
-	padding: 0;
-	margin: 0;
-}
-.header {
-	height: 45px;
-	line-height: 45px;
-	position: absolute;
-	top: 0;
-	right: 0;
-	left: 0;
-	z-index: 9999;
-	display: block;
-	margin: 0;
-	width: 100%;
-	min-width: 1024px;
-	height: 48px;
-	max-height: 44px;
-	background: rgba(221, 221, 221, 0.92);
-	font-size: 17px;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	padding-left: 60px;
-}
-.follow {
-	float: right;
-	margin-right: 79px;
-}
-.follow img {
-	width: 25px;
+.input-search-btn {
 	position: relative;
-	top: 7px;
+	width: 80%;
+	margin-right: 10px;
 }
-
-body {
-	font-family: "Sen", sans-serif;
-	background: #f9f9fa;
+.search-input {
+	width: 100%;
+	height: 35px;
+	outline: none;
+	padding-left: 20px;
+	font: 400 16px sans-serif;
 }
-
-.container {
-	width: 90%;
-	margin: 7% auto;
+.search-btn {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	cursor: pointer;
+	background: #11998e;
+	color: #fff;
+	outline: none;
+	border: none;
+	height: 35px;
 }
-
-.follow a {
-	color: #131313;
-	text-decoration: none;
+.filter-btn {
+	width: 20%;
+	outline: none;
+	height: 35px;
+	font: 400 16px sans-serif;
 }
-
+.employee-image {
+	height: 50px;
+	width: 50px;
+	margin-top: 20px;
+	margin-right: 20px;
+}
+.employee-name {
+	font: 600 20px sans-serif;
+	margin: 0px;
+	margin-top: 15px;
+}
+.employee-designation {
+	margin-top: 5px;
+	font: 400 16px sans-serif;
+	display: flex;
+	flex-direction: column;
+}
+.employee-team {
+	font: 600 13px sans-serif;
+	margin: 5px;
+	width: 150px;
+	text-align: center;
+	padding: 5px 10px;
+	border-radius: 5px;
+	color: #fff;
+}
 .org-tree ul {
 	padding-top: 20px;
 	position: relative;
@@ -109,7 +105,7 @@ body {
 	-moz-transition: all 0.5s;
 }
 
-/*We will use ::before and ::after to draw the connectors*/
+/*We will use ::before and ::after to draw the connectors
 
 .org-tree li::before,
 .org-tree li::after {
@@ -162,7 +158,7 @@ body {
 	width: 0;
 	height: 20px;
 }
-
+*/
 .org-tree li a {
 	border: 1px solid #ccc;
 	padding: 5px 10px;
@@ -257,4 +253,18 @@ body {
 .card .card-footer img {
 	width: 25px;
 	margin: 5px;
+}
+
+@media all and (max-width: 1000px) {
+	.container {
+		flex-direction: column;
+		flex-wrap: wrap;
+	}
+	.org-tree {
+		width: 100%;
+	}
+	.employee-list-container {
+		width: 100%;
+		height: 100%;
+	}
 }

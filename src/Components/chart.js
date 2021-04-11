@@ -10,7 +10,7 @@ const Card = (props) => {
 	return (
 		<ul>
 			{props.data.map((item) => (
-				<Fragment key={item.name}>
+				<Fragment key={Math.random()}>
 					<li>
 						<div draggable className="card">
 							<div className="image">

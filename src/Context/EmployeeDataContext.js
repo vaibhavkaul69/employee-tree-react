@@ -6,6 +6,7 @@ class EmployeeDataContextProvider extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			inputText: "",
 			data: [
 				{
 					name: "Mark Hill",
@@ -24,35 +25,35 @@ class EmployeeDataContextProvider extends Component {
 				{
 					name: "Linda May",
 					designation: "Chief Business Officer",
-					team: "Development",
+					team: "Business Team",
 					id: 7878,
 					manager: 1234,
 				},
 				{
 					name: "John Green",
 					designation: "Chief Accounting Officer",
-					team: "Development",
+					team: "Marketing",
 					id: 6789,
 					manager: 1234,
 				},
 				{
 					name: "Ron Blomquist",
 					designation: "Chief Information Officer",
-					team: "Development",
+					team: "Human Resource",
 					id: 6666,
 					manager: 8980,
 				},
 				{
 					name: "Michael Rubin",
 					designation: "Chief Innovation Officer",
-					team: "Development",
+					team: "Marketing",
 					id: 6567,
 					manager: 8980,
 				},
 				{
 					name: "Alice Lopez",
 					designation: "Chief Communication Officer",
-					team: "Development",
+					team: "Marketing",
 					id: 5634,
 					manager: 7878,
 				},
@@ -66,14 +67,14 @@ class EmployeeDataContextProvider extends Component {
 				{
 					name: "Kirk Dougles",
 					designation: "Chief Business Development Officer",
-					team: "Development",
+					team: "Human Resource",
 					id: 3458,
 					manager: 7878,
 				},
 				{
 					name: "Erica Reel",
 					designation: "Chief Customer Officer",
-					team: "Development",
+					team: "Customer Success",
 					id: 6789,
 					manager: 6789,
 				},
@@ -81,9 +82,56 @@ class EmployeeDataContextProvider extends Component {
 			employeeTree: {},
 		};
 	}
+	updateSearchInputText = (val) => {
+		this.setState({
+			inputText: val,
+		});
+	};
+	filterUserByTeam = (teamName) => {
+		const midArray = this.state.data.filter((item) => {
+			if (item.team.toLowerCase().indexOf(teamName.toLowerCase()) != -1) {
+				return item;
+			}
+		});
+		if (midArray.length > 0) {
+			this.setState(
+				{
+					data: midArray,
+				},
+				() => console.log(this.state.data)
+			);
+		} else {
+			alert("Not Found...");
+		}
+	};
+	searchEmployeeByName = () => {
+		const inputData = this.state.inputText;
+		const midArray = this.state.data.filter((item) => {
+			if (item.name.toLowerCase().indexOf(inputData.toLowerCase()) != -1) {
+				return item;
+			}
+		});
+		if (midArray.length > 0) {
+			this.setState(
+				{
+					data: midArray,
+				},
+				() => console.log(this.state.data)
+			);
+		} else {
+			alert("Not Found...");
+		}
+	};
 	render() {
 		return (
-			<EmployeeDataContext.Provider value={{ ...this.state }}>
+			<EmployeeDataContext.Provider
+				value={{
+					...this.state,
+					updateSearchInputText: this.updateSearchInputText,
+					searchEmployeeByName: this.searchEmployeeByName,
+					filterUserByTeam: this.filterUserByTeam,
+				}}
+			>
 				{this.props.children}
 			</EmployeeDataContext.Provider>
 		);
