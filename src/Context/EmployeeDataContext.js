@@ -130,7 +130,7 @@ class EmployeeDataContextProvider extends Component {
 	}
 	filterUserByTeam = (teamName) => {
 		const midArray = this.state.data.filter((item) => {
-			if (item.team.toLowerCase().indexOf(teamName.toLowerCase()) != -1) {
+			if (item.team.toLowerCase().indexOf(teamName.toLowerCase()) !== -1) {
 				return item;
 			}
 		});
@@ -139,7 +139,7 @@ class EmployeeDataContextProvider extends Component {
 	searchEmployeeByName = () => {
 		const inputData = this.state.inputText;
 		const midArray = this.state.data.filter((item) => {
-			if (item.name.toLowerCase().indexOf(inputData.toLowerCase()) != -1) {
+			if (item.name.toLowerCase().indexOf(inputData.toLowerCase()) !== -1) {
 				return item;
 			}
 		});
@@ -148,12 +148,9 @@ class EmployeeDataContextProvider extends Component {
 
 	updateDataArray = (midArray) => {
 		if (midArray.length > 0) {
-			this.setState(
-				{
-					data: midArray,
-				},
-				() => console.log(this.state.data)
-			);
+			this.setState({
+				data: midArray,
+			});
 		} else {
 			alert("Not Found...");
 		}
