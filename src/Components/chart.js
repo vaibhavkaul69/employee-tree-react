@@ -47,7 +47,7 @@ const Card = ({ data }) => {
 									</div>
 								</div>
 							</li>
-							{item.children ? <CreateNode node={item.children} /> : null}
+							{item.children ? CreateNode(item.children) : null}
 						</div>
 					</React.Fragment>
 				);
@@ -56,14 +56,13 @@ const Card = ({ data }) => {
 	);
 };
 
-const CreateNode = ({ node }) => {
+const CreateNode = (node) => {
 	console.log(node);
 	return (
 		<div className="node">
 			{node.map((item) => {
 				return (
 					<div
-						key={Math.random() * 1000}
 						className="node-item"
 						style={{ border: `5px solid ${getRandomColor()}` }}
 					>
