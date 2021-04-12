@@ -75,8 +75,8 @@ class EmployeeDataContextProvider extends Component {
 					name: "Erica Reel",
 					designation: "Chief Customer Officer",
 					team: "Customer Success",
-					id: 6789,
-					manager: null,
+					id: 6888,
+					manager: 6789,
 				},
 			],
 		};
@@ -126,7 +126,7 @@ class EmployeeDataContextProvider extends Component {
 			}
 		}
 		//console.log(this.state.data);
-		//console.log(this.state.data);
+		console.log(this.tree);
 	}
 	filterUserByTeam = (teamName) => {
 		const midArray = this.state.data.filter((item) => {
