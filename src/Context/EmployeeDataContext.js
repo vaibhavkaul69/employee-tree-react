@@ -76,33 +76,65 @@ class EmployeeDataContextProvider extends Component {
 					designation: "Chief Customer Officer",
 					team: "Customer Success",
 					id: 6789,
-					manager: 6789,
+					manager: null,
 				},
 			],
-			employeeTree: {},
 		};
+
+		this.employee_mapping = {};
+		this.tree = {};
+		this.root = [];
 	}
 	updateSearchInputText = (val) => {
 		this.setState({
 			inputText: val,
 		});
 	};
+
+	parseData = (arr) => {
+		let root = [];
+		arr.forEach((employee) => {
+			this.employee_mapping[employee.id] = employee;
+			if (!(employee.id in this.tree)) {
+				this.tree[employee.id] = {
+					children: [],
+				};
+			}
+			if (employee.manager && !(employee.manager in this.tree)) {
+				this.tree[employee.manager] = {
+					children: [],
+				};
+			}
+			if (employee.manager) {
+				this.tree[employee.manager].children.push(employee.id);
+			} else {
+				root.push(employee.id);
+			}
+		});
+		return root;
+	};
+	componentDidMount() {
+		this.root = this.parseData(this.state.data);
+		//console.log(this.tree);
+		for (let i = 0; i < this.state.data.length; i++) {
+			if (this.tree.hasOwnProperty(this.state.data[i].id)) {
+				this.state.data[i]["children"] = this.tree[this.state.data[i].id][
+					"children"
+				].map((item) => {
+					return this.employee_mapping[item];
+				});
+			}
+		}
+		//console.log(this.state.data);
+		//console.log(this.state.data);
+	}
 	filterUserByTeam = (teamName) => {
 		const midArray = this.state.data.filter((item) => {
 			if (item.team.toLowerCase().indexOf(teamName.toLowerCase()) != -1) {
 				return item;
 			}
 		});
-		if (midArray.length > 0) {
-			this.setState(
-				{
-					data: midArray,
-				},
-				() => console.log(this.state.data)
-			);
-		} else {
-			alert("Not Found...");
-		}
+		this.updateDataArray(midArray);
 	};
 	searchEmployeeByName = () => {
 		const inputData = this.state.inputText;
@@ -111,6 +143,10 @@ class EmployeeDataContextProvider extends Component {
 				return item;
 			}
 		});
+		this.updateDataArray(midArray);
+	};
+
+	updateDataArray = (midArray) => {
 		if (midArray.length > 0) {
 			this.setState(
 				{
@@ -130,6 +166,8 @@ class EmployeeDataContextProvider extends Component {
 					updateSearchInputText: this.updateSearchInputText,
 					searchEmployeeByName: this.searchEmployeeByName,
 					filterUserByTeam: this.filterUserByTeam,
+					employee_mapping: this.employee_mapping,
+					tree: this.tree,
 				}}
 			>
 				{this.props.children}

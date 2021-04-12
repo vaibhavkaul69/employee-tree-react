@@ -1,15 +1,23 @@
-import React, { Fragment } from "react";
-import data from "../data.json";
+import React, { Fragment, useContext, useEffect } from "react";
+//import data from "../data.json";
 import { getRandomColor } from "./getRandomColor";
 import image from "../image.png";
+import { EmployeeDataContext } from "../Context/EmployeeDataContext";
 
-const Card = (props) => {
-	const levelColor = getRandomColor();
-	console.log(levelColor);
+const Chart = () => {
+	const { data } = useContext(EmployeeDataContext);
 
 	return (
-		<ul>
-			{props.data.map((item) => (
+		<div className="org-tree">
+			<Card data={data} />
+		</div>
+	);
+};
+const Card = ({ data }) => {
+	console.log(data);
+	return (
+		<ul className="employee-tree-nodes">
+			{data.map((item) => (
 				<Fragment key={Math.random()}>
 					<li>
 						<div draggable className="card">
@@ -17,27 +25,19 @@ const Card = (props) => {
 								<img
 									src={image}
 									alt="Profile"
-									style={{ borderColor: levelColor }}
+									style={{ borderColor: getRandomColor() }}
 								/>
 							</div>
 							<div className="card-body">
 								<h4>{item.name}</h4>
-								<p>Dummy paragraph...</p>
+								<p>{item.designation}</p>
 							</div>
 						</div>
-						{item.children?.length && <Card data={item.children} />}
 					</li>
+					{item.children?.length && <Card data={item.children} />}
 				</Fragment>
 			))}
 		</ul>
-	);
-};
-
-const Chart = () => {
-	return (
-		<div className="org-tree">
-			<Card data={data} />
-		</div>
 	);
 };
 

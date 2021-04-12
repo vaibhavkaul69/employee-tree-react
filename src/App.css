@@ -82,15 +82,12 @@
 	text-align: center;
 	padding: 5px 10px;
 	border-radius: 5px;
-	color: #fff;
+	color: #000;
 }
 .org-tree ul {
 	padding-top: 20px;
 	position: relative;
-
 	transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
 }
 
 .org-tree li {
@@ -99,13 +96,10 @@
 	list-style-type: none;
 	position: relative;
 	padding: 20px 5px 0 5px;
-
 	transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
 }
 
-/*We will use ::before and ::after to draw the connectors
+/*We will use ::before and ::after to draw the connectors*/
 
 .org-tree li::before,
 .org-tree li::after {
@@ -158,7 +152,7 @@
 	width: 0;
 	height: 20px;
 }
-*/
+
 .org-tree li a {
 	border: 1px solid #ccc;
 	padding: 5px 10px;
@@ -193,32 +187,32 @@
 
 .card {
 	position: relative;
-	padding-top: 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 0.2);
 	/* width: 300px; */
 }
 
 .card .image {
 	border-radius: 50%;
 	width: 80px;
-	height: 80px;
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	top: -10px;
+	min-height: 80px;
+	display: block;
+	margin: 10px auto;
 	z-index: 100;
 }
 .card .image img {
 	border-radius: 50%;
-	width: 80px;
-	height: 80px;
+	width: 60px;
+	height: 60px;
 	border: 13px solid #96f6b7;
 }
 .card .card-body {
 	background: #fff;
-	height: 56px;
+	min-height: 56px;
 	text-align: center;
 	width: 300px;
-	padding-top: 60px;
 	border-radius: 16px;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
@@ -228,12 +222,14 @@
 	transform: translateX(-50%);
 }
 
-.card .card-body h2 {
+.card .card-body h4 {
 	font-weight: 600;
+	margin: 5px auto;
 	line-height: 20px;
 }
 .card .card-body p {
 	line-height: 20px;
+	margin: 5px auto;
 	font-size: small;
 }
 .card .card-footer {

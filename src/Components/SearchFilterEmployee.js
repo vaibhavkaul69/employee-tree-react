@@ -26,7 +26,7 @@ export default function SearchFilterEmployee() {
 				onChange={(e) => filterUserByTeam(e.target.value)}
 				className="filter-btn"
 			>
-				<option value="default">Filter Team...</option>
+				<option value="null">Filter Team...</option>
 				{[...uniqueTeamArray].map((item, i) => {
 					return (
 						<option key={Math.random()} value={item}>
