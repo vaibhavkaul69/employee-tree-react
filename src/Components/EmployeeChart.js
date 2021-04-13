@@ -4,7 +4,7 @@ import { getRandomColor } from "./getRandomColor";
 import image from "../image.png";
 import { EmployeeDataContext } from "../Context/EmployeeDataContext";
 
-const Chart = () => {
+const EmployeeChart = () => {
 	const { data } = useContext(EmployeeDataContext);
 
 	return (
@@ -16,15 +16,16 @@ const Chart = () => {
 const Card = ({ data }) => {
 	//console.log(data);
 	return (
-		<ul className="employee-tree-nodes">
+		<ul>
 			{data.map((item) => {
 				//console.log(item);
 				return (
 					<React.Fragment>
-						<div className="node-container" key={Math.random() * 1000}>
+						<div className="node-container">
 							<li>
 								<div
 									draggable
+									key={Math.random() * 1000}
 									className="card"
 									style={{ border: `5px solid ${getRandomColor()}` }}
 								>
@@ -62,27 +63,29 @@ const CreateNode = (node) => {
 		<div className="node">
 			{node.map((item) => {
 				return (
-					<div
-						className="node-item"
-						style={{ border: `5px solid ${getRandomColor()}` }}
-					>
-						<img
-							src={image}
-							alt="Profile"
-							style={{ borderColor: getRandomColor() }}
-						/>
-						<h3>{item.name}</h3>
-						<p>{item.designation}</p>
-						<button
-							className="team-btn"
-							style={{ background: getRandomColor() }}
+					<React.Fragment>
+						<div
+							className="node-item"
+							style={{ border: `5px solid ${getRandomColor()}` }}
 						>
-							{item.team}
-						</button>
-					</div>
+							<img
+								src={image}
+								alt="Profile"
+								style={{ borderColor: getRandomColor() }}
+							/>
+							<h3>{item.name}</h3>
+							<p>{item.designation}</p>
+							<button
+								className="team-btn"
+								style={{ background: getRandomColor() }}
+							>
+								{item.team}
+							</button>
+						</div>
+					</React.Fragment>
 				);
 			})}
 		</div>
 	);
 };
-export default Chart;
+export default EmployeeChart;

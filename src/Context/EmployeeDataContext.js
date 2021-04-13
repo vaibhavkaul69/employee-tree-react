@@ -116,15 +116,19 @@ class EmployeeDataContextProvider extends Component {
 	componentDidMount() {
 		this.root = this.parseData(this.state.data);
 		//console.log(this.tree);
+		const newData = this.state.data;
 		for (let i = 0; i < this.state.data.length; i++) {
-			if (this.tree.hasOwnProperty(this.state.data[i].id)) {
-				this.state.data[i]["children"] = this.tree[this.state.data[i].id][
-					"children"
-				].map((item) => {
-					return this.employee_mapping[item];
-				});
+			if (this.tree.hasOwnProperty(newData[i].id)) {
+				newData[i]["children"] = this.tree[newData[i].id]["children"].map(
+					(item) => {
+						return this.employee_mapping[item];
+					}
+				);
 			}
 		}
+		this.setState({
+			data: newData,
+		});
 		//console.log(this.state.data);
 		console.log(this.tree);
 	}
