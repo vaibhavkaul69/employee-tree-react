@@ -105,13 +105,8 @@ ul {
 	transition: all 0.5s;
 }
 
-.node-container {
-	display: flex;
-	flex-direction: column;
-}
 .node {
 	display: flex;
-
 	margin: 5px auto;
 }
 .node-item {
@@ -132,8 +127,12 @@ ul {
 	font: 40 15px sans-serif;
 }
 
-#children {
-	display: flex;
+.child {
+	display: flex !important;
+	overflow-x: auto;
+}
+span {
+	margin: 5px;
 }
 .card {
 	position: relative;

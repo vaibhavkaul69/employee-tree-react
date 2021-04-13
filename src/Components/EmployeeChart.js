@@ -13,47 +13,46 @@ const EmployeeChart = () => {
 		</div>
 	);
 };
-const Card = ({ data }) => {
-	//console.log(data);
+
+const Card = (props) => {
+	console.log(props);
 	return (
-		<ul>
-			{data.map((item) => {
+		<div className={props.name ? props.name : ""}>
+			{props.data.map((item) => {
 				//console.log(item);
 				return (
 					<React.Fragment>
-						<div className="node-container">
-							<li>
-								<div
-									draggable
-									key={Math.random() * 1000}
-									className="card"
-									style={{ border: `5px solid ${getRandomColor()}` }}
-								>
-									<div className="image">
-										<img
-											src={image}
-											alt="Profile"
-											style={{ borderColor: getRandomColor() }}
-										/>
-									</div>
-									<div className="card-body">
-										<h4>{item.name}</h4>
-										<p>{item.designation}</p>
-										<button
-											className="team-btn"
-											style={{ background: getRandomColor() }}
-										>
-											{item.team}
-										</button>
-									</div>
+						<span>
+							<div
+								draggable
+								key={Math.random() * 1000}
+								className="card"
+								style={{ border: `5px solid ${getRandomColor()}` }}
+							>
+								<div className="image">
+									<img
+										src={image}
+										alt="Profile"
+										style={{ borderColor: getRandomColor() }}
+									/>
 								</div>
-							</li>
-							{item.children ? CreateNode(item.children) : null}
-						</div>
+								<div className="card-body">
+									<h4>{item.name}</h4>
+									<p>{item.designation}</p>
+									<button
+										className="team-btn"
+										style={{ background: getRandomColor() }}
+									>
+										{item.team}
+									</button>
+								</div>
+							</div>
+						</span>
+						{item.children ? <Card data={item.children} name="child" /> : null}
 					</React.Fragment>
 				);
 			})}
-		</ul>
+		</div>
 	);
 };
 
