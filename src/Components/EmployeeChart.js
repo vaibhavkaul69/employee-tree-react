@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 //import data from "../data.json";
 import { getRandomColor } from "./getRandomColor";
 import image from "../image.png";
@@ -15,7 +15,6 @@ const EmployeeChart = () => {
 };
 
 const Card = (props) => {
-	console.log(props);
 	return (
 		<div className={props.name ? props.name : ""}>
 			{props.data.map((item) => {
@@ -56,35 +55,4 @@ const Card = (props) => {
 	);
 };
 
-const CreateNode = (node) => {
-	console.log(node);
-	return (
-		<div className="node">
-			{node.map((item) => {
-				return (
-					<React.Fragment>
-						<div
-							className="node-item"
-							style={{ border: `5px solid ${getRandomColor()}` }}
-						>
-							<img
-								src={image}
-								alt="Profile"
-								style={{ borderColor: getRandomColor() }}
-							/>
-							<h3>{item.name}</h3>
-							<p>{item.designation}</p>
-							<button
-								className="team-btn"
-								style={{ background: getRandomColor() }}
-							>
-								{item.team}
-							</button>
-						</div>
-					</React.Fragment>
-				);
-			})}
-		</div>
-	);
-};
 export default EmployeeChart;

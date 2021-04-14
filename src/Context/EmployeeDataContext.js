@@ -129,8 +129,6 @@ class EmployeeDataContextProvider extends Component {
 		this.setState({
 			data: newData,
 		});
-		//console.log(this.state.data);
-		console.log(this.tree);
 	}
 	filterUserByTeam = (teamName) => {
 		const midArray = this.state.data.filter((item) => {
@@ -169,6 +167,7 @@ class EmployeeDataContextProvider extends Component {
 					filterUserByTeam: this.filterUserByTeam,
 					employee_mapping: this.employee_mapping,
 					tree: this.tree,
+					root: this.root,
 				}}
 			>
 				{this.props.children}
