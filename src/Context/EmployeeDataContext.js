@@ -1,4 +1,5 @@
 import React, { createContext, Component } from "react";
+import EmployeeList from "../Components/EmployeeList";
 
 export const EmployeeDataContext = createContext();
 
@@ -79,6 +80,7 @@ class EmployeeDataContextProvider extends Component {
 					manager: 6789,
 				},
 			],
+			recursiveData: [],
 		};
 
 		this.employee_mapping = {};
@@ -119,6 +121,7 @@ class EmployeeDataContextProvider extends Component {
 	};
 	componentDidMount() {
 		this.root = this.parseData(this.state.data);
+
 		//console.log(this.tree);
 		const newData = this.state.data;
 		for (let i = 0; i < this.state.data.length; i++) {
@@ -130,6 +133,8 @@ class EmployeeDataContextProvider extends Component {
 				);
 			}
 		}
+
+		console.log(this.root);
 		this.setState({
 			data: newData,
 		});

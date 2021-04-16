@@ -7,6 +7,7 @@
 .org-tree {
 	width: calc(100vw - 30vw);
 	margin: 10px;
+	overflow-x: scroll;
 }
 body {
 	font-family: sans-serif;
@@ -98,7 +99,6 @@ body {
 }
 
 .characters {
-	list-style: none;
 	padding-left: 0;
 }
 
@@ -134,7 +134,37 @@ body {
 	width: 100%;
 	height: auto;
 }
+.tree li {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 
+.tree li div {
+	width: 100%;
+	display: flex;
+}
+.tree li div li {
+	padding: 20px;
+}
+
+span {
+	display: flex;
+	margin: 5px;
+	padding: 5px 10px;
+	flex-direction: column;
+	box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 0.2);
+}
+
+.tree {
+	display: flex;
+	width: 100%;
+}
+
+ul {
+	padding-inline-start: 0px;
+}
 @media all and (max-width: 1000px) {
 	.container {
 		flex-direction: column;
