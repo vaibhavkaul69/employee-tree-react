@@ -39,6 +39,12 @@ const list = (root, tree, employee_mapping) => {
 					<span onDragStart={(event) => drag(event)} id={item} draggable>
 						<h4>{employee_mapping[item].title}</h4>
 						<p>{employee_mapping[item].subtitle}</p>
+						<span
+							style={{ background: getRandomColor() }}
+							className="employee-team"
+						>
+							{employee_mapping[item].team}
+						</span>
 					</span>
 
 					<div>{list(tree[item].children, tree, employee_mapping)}</div>

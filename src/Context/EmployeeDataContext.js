@@ -79,13 +79,19 @@ class EmployeeDataContextProvider extends Component {
 					id: 6888,
 					manager: 6789,
 				},
+				{
+					title: "Dwayne Johnson",
+					subtitle: "Vice President-Engineering",
+					team: "Engineering",
+					id: 5671,
+					manager: 6789,
+				},
 			],
-			recursiveData: [],
+			root: [],
 		};
 
 		this.employee_mapping = {};
 		this.tree = {};
-		this.root = [];
 	}
 	updateSearchInputText = (val) => {
 		this.setState({
@@ -95,6 +101,11 @@ class EmployeeDataContextProvider extends Component {
 	setNewData = (newData) => {
 		this.setState({
 			data: newData,
+		});
+	};
+	setNewTreeRoot = (newRoot) => {
+		this.setState({
+			root: newRoot,
 		});
 	};
 	parseData = (arr) => {
@@ -120,7 +131,7 @@ class EmployeeDataContextProvider extends Component {
 		return root;
 	};
 	componentDidMount() {
-		this.root = this.parseData(this.state.data);
+		this.setNewTreeRoot(this.parseData(this.state.data));
 
 		//console.log(this.tree);
 		const newData = this.state.data;
@@ -146,7 +157,10 @@ class EmployeeDataContextProvider extends Component {
 				return item;
 			}
 		});
+		const allIds = midArray.map((item) => item.id);
 		this.updateDataArray(midArray);
+		console.log(allIds);
+		this.setNewTreeRoot(allIds);
 	};
 	searchEmployeeBytitle = () => {
 		const inputData = this.state.inputText;
@@ -156,6 +170,7 @@ class EmployeeDataContextProvider extends Component {
 			}
 		});
 		this.updateDataArray(midArray);
+		this.setNewTreeRoot([midArray[0].id]);
 	};
 
 	updateDataArray = (midArray) => {
@@ -177,7 +192,6 @@ class EmployeeDataContextProvider extends Component {
 					filterUserByTeam: this.filterUserByTeam,
 					employee_mapping: this.employee_mapping,
 					tree: this.tree,
-					root: this.root,
 					setNewData: this.setNewData,
 				}}
 			>
