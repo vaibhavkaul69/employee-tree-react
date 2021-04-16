@@ -1,56 +1,66 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 //import data from "../data.json";
 import { getRandomColor } from "./getRandomColor";
 import image from "../image.png";
 import { EmployeeDataContext } from "../Context/EmployeeDataContext";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const EmployeeChart = () => {
-	const { data } = useContext(EmployeeDataContext);
+	const { data, setNewData } = useContext(EmployeeDataContext);
 
+	function handleOnDragEnd(result) {
+		if (!result.destination) return;
+
+		const items = Array.from(data);
+		const [reorderedItem] = items.splice(result.source.index, 1);
+		items.splice(result.destination.index, 0, reorderedItem);
+
+		setNewData(items);
+	}
 	return (
 		<div className="org-tree">
-			<Card data={data} />
-		</div>
-	);
-};
-
-const Card = (props) => {
-	return (
-		<div className={props.name ? props.name : ""}>
-			{props.data.map((item) => {
-				//console.log(item);
-				return (
-					<React.Fragment>
-						<span>
-							<div
-								draggable
-								key={Math.random() * 1000}
-								className="card"
-								style={{ border: `5px solid ${getRandomColor()}` }}
-							>
-								<div className="image">
-									<img
-										src={image}
-										alt="Profile"
-										style={{ borderColor: getRandomColor() }}
-									/>
-								</div>
-								<div className="card-body">
-									<h4>{item.name}</h4>
-									<p>{item.designation}</p>
-									<button
-										className="team-btn"
-										style={{ background: getRandomColor() }}
+			<DragDropContext onDragEnd={handleOnDragEnd}>
+				<Droppable droppableId="data">
+					{(provided) => (
+						<ul
+							className="characters"
+							{...provided.droppableProps}
+							ref={provided.innerRef}
+						>
+							{data.map((item, index) => {
+								return (
+									<Draggable
+										key={item.id}
+										draggableId={item.id.toString()}
+										index={index}
 									>
-										{item.team}
-									</button>
-								</div>
-							</div>
-						</span>
-						{item.children ? <Card data={item.children} name="child" /> : null}
-					</React.Fragment>
-				);
-			})}
+										{(provided) => (
+											<li
+												ref={provided.innerRef}
+												{...provided.draggableProps}
+												{...provided.dragHandleProps}
+											>
+												<div className="characters-thumb">
+													<img src={image} alt={`${item.title} Thumb`} />
+												</div>
+												<p className="employee-name">{item.title}</p>
+												<p className="employee-designation">{item.subtitle}</p>
+												<span
+													style={{ background: getRandomColor() }}
+													className="employee-team"
+												>
+													{item.team}
+												</span>
+											</li>
+										)}
+									</Draggable>
+								);
+							})}
+							{provided.placeholder}
+						</ul>
+					)}
+				</Droppable>
+			</DragDropContext>
 		</div>
 	);
 };

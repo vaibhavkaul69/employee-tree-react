@@ -9,71 +9,71 @@ class EmployeeDataContextProvider extends Component {
 			inputText: "",
 			data: [
 				{
-					name: "Mark Hill",
-					designation: "Chief Operation Officer",
+					title: "Mark Hill",
+					subtitle: "Chief Operation Officer",
 					team: "Development",
 					id: 1234,
 					manager: null,
 				},
 				{
-					name: "Joe Linux",
-					designation: "Chief Technology Officer",
+					title: "Joe Linux",
+					subtitle: "Chief Technology Officer",
 					team: "Development",
 					id: 8980,
 					manager: 1234,
 				},
 				{
-					name: "Linda May",
-					designation: "Chief Business Officer",
+					title: "Linda May",
+					subtitle: "Chief Business Officer",
 					team: "Business Team",
 					id: 7878,
 					manager: 1234,
 				},
 				{
-					name: "John Green",
-					designation: "Chief Accounting Officer",
+					title: "John Green",
+					subtitle: "Chief Accounting Officer",
 					team: "Marketing",
 					id: 6789,
 					manager: 1234,
 				},
 				{
-					name: "Ron Blomquist",
-					designation: "Chief Information Officer",
+					title: "Ron Blomquist",
+					subtitle: "Chief Information Officer",
 					team: "Human Resource",
 					id: 6666,
 					manager: 8980,
 				},
 				{
-					name: "Michael Rubin",
-					designation: "Chief Innovation Officer",
+					title: "Michael Rubin",
+					subtitle: "Chief Innovation Officer",
 					team: "Marketing",
 					id: 6567,
 					manager: 8980,
 				},
 				{
-					name: "Alice Lopez",
-					designation: "Chief Communication Officer",
+					title: "Alice Lopez",
+					subtitle: "Chief Communication Officer",
 					team: "Marketing",
 					id: 5634,
 					manager: 7878,
 				},
 				{
-					name: "Marry Johnson",
-					designation: "Chief Brand Officer",
+					title: "Marry Johnson",
+					subtitle: "Chief Brand Officer",
 					team: "Development",
 					id: 7765,
 					manager: 7878,
 				},
 				{
-					name: "Kirk Dougles",
-					designation: "Chief Business Development Officer",
+					title: "Kirk Dougles",
+					subtitle: "Chief Business Development Officer",
 					team: "Human Resource",
 					id: 3458,
 					manager: 7878,
 				},
 				{
-					name: "Erica Reel",
-					designation: "Chief Customer Officer",
+					title: "Erica Reel",
+					subtitle: "Chief Customer Officer",
 					team: "Customer Success",
 					id: 6888,
 					manager: 6789,
@@ -90,7 +90,11 @@ class EmployeeDataContextProvider extends Component {
 			inputText: val,
 		});
 	};
-
+	setNewData = (newData) => {
+		this.setState({
+			data: newData,
+		});
+	};
 	parseData = (arr) => {
 		let root = [];
 		arr.forEach((employee) => {
@@ -130,18 +134,19 @@ class EmployeeDataContextProvider extends Component {
 			data: newData,
 		});
 	}
-	filterUserByTeam = (teamName) => {
+
+	filterUserByTeam = (teamtitle) => {
 		const midArray = this.state.data.filter((item) => {
-			if (item.team.toLowerCase().indexOf(teamName.toLowerCase()) !== -1) {
+			if (item.team.toLowerCase().indexOf(teamtitle.toLowerCase()) !== -1) {
 				return item;
 			}
 		});
 		this.updateDataArray(midArray);
 	};
-	searchEmployeeByName = () => {
+	searchEmployeeBytitle = () => {
 		const inputData = this.state.inputText;
 		const midArray = this.state.data.filter((item) => {
-			if (item.name.toLowerCase().indexOf(inputData.toLowerCase()) !== -1) {
+			if (item.title.toLowerCase().indexOf(inputData.toLowerCase()) !== -1) {
 				return item;
 			}
 		});
@@ -163,11 +168,12 @@ class EmployeeDataContextProvider extends Component {
 				value={{
 					...this.state,
 					updateSearchInputText: this.updateSearchInputText,
-					searchEmployeeByName: this.searchEmployeeByName,
+					searchEmployeeBytitle: this.searchEmployeeBytitle,
 					filterUserByTeam: this.filterUserByTeam,
 					employee_mapping: this.employee_mapping,
 					tree: this.tree,
 					root: this.root,
+					setNewData: this.setNewData,
 				}}
 			>
 				{this.props.children}

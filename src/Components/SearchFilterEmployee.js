@@ -5,7 +5,7 @@ export default function SearchFilterEmployee() {
 	const {
 		data,
 		updateSearchInputText,
-		searchEmployeeByName,
+		searchEmployeeBytitle,
 		filterUserByTeam,
 	} = useContext(EmployeeDataContext);
 	const uniqueTeamArray = new Set(data.map((item) => item.team));
@@ -18,7 +18,7 @@ export default function SearchFilterEmployee() {
 					className="search-input"
 					placeholder="Search by name..."
 				/>
-				<button onClick={searchEmployeeByName} className="search-btn">
+				<button onClick={searchEmployeeBytitle} className="search-btn">
 					Search
 				</button>
 			</div>

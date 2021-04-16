@@ -12,9 +12,9 @@ export default function EmployeeListContainer() {
 				{data.map((item, i) => {
 					return (
 						<EmployeeList
-							name={item.name}
+							title={item.title}
 							key={i}
-							designation={item.designation}
+							subtitle={item.subtitle}
 							team={item.team}
 						></EmployeeList>
 					);
