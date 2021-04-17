@@ -144,8 +144,6 @@ class EmployeeDataContextProvider extends Component {
 				);
 			}
 		}
-
-		console.log(this.root);
 		this.setState({
 			data: newData,
 		});
@@ -170,7 +168,7 @@ class EmployeeDataContextProvider extends Component {
 			}
 		});
 		this.updateDataArray(midArray);
-		this.setNewTreeRoot([midArray[0].id]);
+		this.setNewTreeRoot([midArray[0] ? midArray[0].id : 1234]);
 	};
 
 	updateDataArray = (midArray) => {

@@ -20,7 +20,11 @@ const EmployeeChart = () => {
 function drop(e) {
 	e.preventDefault();
 	var data = e.dataTransfer.getData("text");
-	e.target.appendChild(document.getElementById(data));
+	if (e.target.tagName == "BUTTON") {
+		e.target.parentNode.appendChild(document.getElementById(data));
+	} else {
+		e.target.appendChild(document.getElementById(data));
+	}
 }
 function allowDrop(e) {
 	e.preventDefault();
@@ -39,12 +43,15 @@ const list = (root, tree, employee_mapping) => {
 					<span onDragStart={(event) => drag(event)} id={item} draggable>
 						<h4>{employee_mapping[item].title}</h4>
 						<p>{employee_mapping[item].subtitle}</p>
-						<span
-							style={{ background: getRandomColor() }}
-							className="employee-team"
+						<button
+							style={{
+								border: "none",
+								background: "transparent",
+								color: getRandomColor(),
+							}}
 						>
 							{employee_mapping[item].team}
-						</span>
+						</button>
 					</span>
 
 					<div>{list(tree[item].children, tree, employee_mapping)}</div>

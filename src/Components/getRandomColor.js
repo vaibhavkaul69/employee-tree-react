@@ -3,5 +3,5 @@ export function getRandomColor() {
 	const color2 = parseInt(Math.random() * 255);
 	const color3 = parseInt(Math.random() * 255);
 
-	return `rgba(${color1},${color2},${color3},0.6)`;
+	return `rgba(${color1},${color2},${color3},1)`;
 }

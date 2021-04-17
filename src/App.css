@@ -5,7 +5,7 @@
 	flex-wrap: nowrap;
 }
 .org-tree {
-	width: calc(100vw - 30vw);
+	width: calc(100% - 30%);
 	margin: 10px;
 	overflow-x: scroll;
 }
@@ -13,7 +13,7 @@ body {
 	font-family: sans-serif;
 }
 .employee-list-container {
-	width: 30vw;
+	width: 30%;
 	height: 100%;
 }
 .employee-list {
@@ -87,7 +87,7 @@ body {
 	text-align: center;
 	padding: 5px 10px;
 	border-radius: 5px;
-	color: #000;
+	color: #fff;
 }
 
 .team-btn {
@@ -97,42 +97,8 @@ body {
 	margin: 5px;
 	font: 40 15px sans-serif;
 }
-
-.characters {
-	padding-left: 0;
-}
-
-.characters li {
+.tree {
 	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	width: 400px;
-	border: solid 2px #d0d0d0;
-	border-radius: 0.2em;
-	padding: 0.5em 0.8em 0.5em 0.5em;
-	margin: 10px auto;
-}
-
-.characters p {
-	max-width: none;
-	font-weight: bold;
-	margin: 5px;
-}
-
-.characters-thumb {
-	overflow: hidden;
-	flex-shrink: 0;
-	width: 2em;
-	height: 2em;
-	background-color: #e8e8e8;
-	padding: 0.5em;
-	margin-right: 0.5em;
-}
-
-.characters-thumb img {
-	display: block;
-	width: 100%;
-	height: auto;
 }
 .tree li {
 	text-align: center;
@@ -157,11 +123,6 @@ span {
 	box-shadow: 5px 5px 25px 0 rgba(46, 61, 73, 0.2);
 }
 
-.tree {
-	display: flex;
-	width: 100%;
-}
-
 ul {
 	padding-inline-start: 0px;
 }
@@ -177,8 +138,5 @@ ul {
 	.employee-list-container {
 		width: 100%;
 		height: 100%;
-	}
-	.characters li {
-		width: 90%;
 	}
 }
