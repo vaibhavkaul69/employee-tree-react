@@ -1,5 +1,4 @@
 import React, { createContext, Component } from "react";
-import EmployeeList from "../Components/EmployeeList";
 
 export const EmployeeDataContext = createContext();
 
@@ -93,6 +92,11 @@ class EmployeeDataContextProvider extends Component {
 		this.employee_mapping = {};
 		this.tree = {};
 	}
+	updateFilteredTeamName = (val) => {
+		this.setState({
+			filterTeamName: val,
+		});
+	};
 	updateSearchInputText = (val) => {
 		this.setState({
 			inputText: val,
@@ -157,9 +161,9 @@ class EmployeeDataContextProvider extends Component {
 		});
 		const allIds = midArray.map((item) => item.id);
 		this.updateDataArray(midArray);
-		console.log(allIds);
 		this.setNewTreeRoot(allIds);
 	};
+
 	searchEmployeeBytitle = () => {
 		const inputData = this.state.inputText;
 		const midArray = this.state.data.filter((item) => {
@@ -190,7 +194,6 @@ class EmployeeDataContextProvider extends Component {
 					filterUserByTeam: this.filterUserByTeam,
 					employee_mapping: this.employee_mapping,
 					tree: this.tree,
-					setNewData: this.setNewData,
 				}}
 			>
 				{this.props.children}

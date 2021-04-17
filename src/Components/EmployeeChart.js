@@ -1,14 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 //import data from "../data.json";
 import { getRandomColor } from "./getRandomColor";
-import image from "../image.png";
 import { EmployeeDataContext } from "../Context/EmployeeDataContext";
 //import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 const EmployeeChart = () => {
-	const { data, setNewData, root, tree, employee_mapping } = useContext(
-		EmployeeDataContext
-	);
+	const { root, tree, employee_mapping } = useContext(EmployeeDataContext);
 
 	return (
 		<div className="org-tree">

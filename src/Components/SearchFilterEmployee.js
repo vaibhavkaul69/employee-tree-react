@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { EmployeeDataContext } from "../Context/EmployeeDataContext";
 
 export default function SearchFilterEmployee() {
@@ -7,8 +7,16 @@ export default function SearchFilterEmployee() {
 		updateSearchInputText,
 		searchEmployeeBytitle,
 		filterUserByTeam,
+		filterTeamName,
 	} = useContext(EmployeeDataContext);
 	const uniqueTeamArray = new Set(data.map((item) => item.team));
+	const [teamName, setTeamName] = useState("default");
+
+	const actionOnFilterInputOnChange = (name) => {
+		setTeamName(name);
+		filterUserByTeam(name);
+	};
+
 	return (
 		<div className="search-filter-employee">
 			<div className="input-search-btn">
@@ -23,13 +31,16 @@ export default function SearchFilterEmployee() {
 				</button>
 			</div>
 			<select
-				onChange={(e) => filterUserByTeam(e.target.value)}
+				value={teamName}
+				onChange={(e) => actionOnFilterInputOnChange(e.target.value)}
 				className="filter-btn"
 			>
-				<option value="null">Filter Team...</option>
+				<option defaultValue={null} value="null">
+					Filter by team
+				</option>
 				{[...uniqueTeamArray].map((item, i) => {
 					return (
-						<option key={Math.random()} value={item}>
+						<option key={i} value={item}>
 							{item}
 						</option>
 					);
